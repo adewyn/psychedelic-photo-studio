@@ -15,7 +15,9 @@ document.addEventListener("DOMContentLoaded", function () {
           const image = new fabric.Image(imgObj);
           canvas.setWidth(image.width);
           canvas.setHeight(image.height);
+          canvas.clear(); // Add this line to clear the canvas before adding a new image
           canvas.add(image);
+          canvas.renderAll(); // Add this line to render the canvas
         };
       };
   
