@@ -15,13 +15,25 @@ document.addEventListener("DOMContentLoaded", function () {
           const image = new fabric.Image(imgObj);
           canvas.setWidth(image.width);
           canvas.setHeight(image.height);
-          canvas.clear(); // Add this line to clear the canvas before adding a new image
+          canvas.clear();
           canvas.add(image);
-          canvas.renderAll(); // Add this line to render the canvas
+          canvas.renderAll();
+        };
+  
+        imgObj.onerror = function () {
+          console.error("Error loading image");
         };
       };
   
-      reader.readAsDataURL(file);
+      reader.onerror = function () {
+        console.error("Error reading file");
+      };
+  
+      if (file) {
+        reader.readAsDataURL(file);
+      } else {
+        console.error("No file selected");
+      }
     });
   
     applyEffect.addEventListener("click", function () {
